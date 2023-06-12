@@ -1,0 +1,14 @@
+setuptools
+tqdm
+matplotlib
+sympy
+networkx
+numpy
+torch
+torchvision
+scikit-learn
+scipy
+pyyaml
+mpmath
+gmpy2
+sacred
