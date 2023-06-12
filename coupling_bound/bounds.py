@@ -1,3 +1,11 @@
+from itertools import chain
+
+import mpmath
+import numpy as np
+from tqdm.auto import tqdm
+
+from coupling_bound import orbit_projection
+from coupling_bound.loss import compute_non_standardness_centered
 
 
 def compute_var_max_bound(ev, dim_a):
@@ -31,8 +39,7 @@ def compute_unitary_bound(ev, dim_a, batch_size=128, pbar=None, prec=1000):
         batch_iter = range(0, expectations.shape[0], batch_size)
         if pbar is None:
             pbar = len(batch_iter) > 1
-        for offset in tqdm(batch_iter,
-                           disable=not pbar):
+        for offset in tqdm(batch_iter, disable=not pbar):
             batch_ev = ev_view[offset:offset + batch_size]
             batch_out = float("nan")
             for noise in chain([0], np.geomspace(1e-15, 1e-5, 20)):
